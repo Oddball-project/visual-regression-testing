@@ -1,0 +1,32 @@
+{
+  "testSuite": "BackstopJS",
+  "tests": [
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_Homepage_0_document_0_desktop.png",
+        "test": "../bitmaps_test/20230628-054557/backstop_default_Homepage_0_document_0_desktop.png",
+        "selector": "document",
+        "fileName": "backstop_default_Homepage_0_document_0_desktop.png",
+        "label": "Homepage",
+        "misMatchThreshold": 0.1,
+        "url": "https://dev-greyscalegorilla.pantheonsite.io",
+        "referenceUrl": "https://greyscalegorilla.com",
+        "expect": 0,
+        "viewportLabel": "desktop",
+        "diff": {
+          "isSameDimensions": false,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 349
+          },
+          "rawMisMatchPercentage": 30.217203446947817,
+          "misMatchPercentage": "30.22",
+          "analysisTime": 458
+        },
+        "diffImage": "../bitmaps_test/20230628-054557/failed_diff_backstop_default_Homepage_0_document_0_desktop.png"
+      },
+      "status": "fail"
+    }
+  ],
+  "id": "backstop_default"
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BackstopJS Comparison Tool</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 10%;
+        }
+        * {box-sizing: border-box;}
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<form action="/compare" method="post">
+    <label for="referenceUrl">Reference URL:</label><br>
+    <input type="text" id="referenceUrl" name="referenceUrl"><br>
+    <label for="url">Test URL:</label><br>
+    <input type="text" id="url" name="url"><br>
+    <input type="text" id="relativePaths" name="relativePaths" placeholder="Relative paths. Separate by comma"><br>
+    <input type="submit" value="Compare">
+</form>
+</body>
+</html>
