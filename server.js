@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+app.get('/test', (req, res) => {
+    res.send("Just a test route");
+});
+
 app.post('/compare', (req, res) => {
     const { referenceUrl, url } = req.body;
     let { relativePaths } = req.body;
