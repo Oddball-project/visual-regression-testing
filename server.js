@@ -4,11 +4,12 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const { WebClient } = require('@slack/web-api');
+require('dotenv').config();
 // // Initialize a single instance for the whole app
 const app = express();
 //
 // Read a token from the environment variables
-const token = "xoxb-5507137915921-5487870130582-38oUsDgFAMZIo4nC9DMtWeFO";
+const token = process.env.TOKEN;
 
 // Initialize
 const web = new WebClient(token);
