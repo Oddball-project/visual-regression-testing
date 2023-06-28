@@ -106,4 +106,4 @@ app.post('/compare', (req, res) => {
     });
 });
 
-app.listen(81, () => console.log('Server running on https://vrt.kbsan.com:81'));
+app.listen(3000, () => console.log('Server running on https://vrt.kbsan.com:81'));
