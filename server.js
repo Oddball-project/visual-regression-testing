@@ -106,4 +106,4 @@ app.post('/compare', (req, res) => {
     });
 });
 
-app.listen(5000, () => console.log('Server running on https://vrt.kbsan.com:8080'));
+app.listen(5000, () => console.log('Server running on https://vrt.kbsan.com:5000'));
