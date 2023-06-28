@@ -21,6 +21,18 @@
       "misMatchThreshold": 0.1
     },
     {
+      "label": "BLOG",
+      "referenceUrl": "https://greyscalegorilla.com/blog",
+      "url": "https://dev-greyscalegorilla.pantheonsite.io/blog",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "document"
+      ],
+      "delay": 500,
+      "misMatchThreshold": 0.1
+    },
+    {
       "label": "JOIN-PLUS",
       "referenceUrl": "https://greyscalegorilla.com/join-plus",
       "url": "https://dev-greyscalegorilla.pantheonsite.io/join-plus",
@@ -33,9 +45,9 @@
       "misMatchThreshold": 0.1
     },
     {
-      "label": "BLOG",
-      "referenceUrl": "https://greyscalegorilla.com/blog",
-      "url": "https://dev-greyscalegorilla.pantheonsite.io/blog",
+      "label": "TUTORIALS",
+      "referenceUrl": "https://greyscalegorilla.com/tutorials",
+      "url": "https://dev-greyscalegorilla.pantheonsite.io/tutorials",
       "hideSelectors": [],
       "removeSelectors": [],
       "selectors": [
