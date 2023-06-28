@@ -8,7 +8,7 @@ const { WebClient } = require('@slack/web-api');
 const app = express();
 //
 // Read a token from the environment variables
-const token = 'xoxb-5507137915921-5487870130582-pngv30mRLNmzPugyuozZHNCL';
+const token = "xoxb-5507137915921-5487870130582-38oUsDgFAMZIo4nC9DMtWeFO";
 
 // Initialize
 const web = new WebClient(token);
@@ -97,7 +97,7 @@ app.post('/compare', (req, res) => {
                 // Post a message to the channel, and await the result.
                 // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
                 const result = await web.chat.postMessage({
-                    text: 'https://vrt.kbsan.com/backstop-data/html_report/',
+                    text: 'http://test.kbsan.com:5000/backstop-data/html_report/',
                     channel: conversationId,
                 });
 
@@ -110,4 +110,4 @@ app.post('/compare', (req, res) => {
     });
 });
 
-app.listen(5000, () => console.log('Server running on https://vrt.kbsan.com:5000'));
+app.listen(5000, () => console.log('Server running on http://test.kbsan.com:5000'));
