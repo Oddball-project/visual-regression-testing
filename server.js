@@ -78,7 +78,7 @@ app.post('/compare', (req, res) => {
             ci_report: 'backstop_data/ci_report',
         },
         report: ['browser'],
-        engine: 'puppeteer',
+        engine: 'playwright',
         engineOptions: {
             args: ['--no-sandbox'],
         },
@@ -93,18 +93,18 @@ app.post('/compare', (req, res) => {
     exec(`backstop reference`, () => {
         exec(`backstop test`, () => {
 
-            (async () => {
-
-                // Post a message to the channel, and await the result.
-                // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
-                const result = await web.chat.postMessage({
-                    text: 'http://test.kbsan.com:5000/backstop-data/html_report/',
-                    channel: conversationId,
-                });
-
-                // The result contains an identifier for the message, `ts`.
-                console.log(`Successfully send message ${result.ts} in conversation ${conversationId}`);
-            })();
+            // (async () => {
+            //
+            //     // Post a message to the channel, and await the result.
+            //     // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
+            //     const result = await web.chat.postMessage({
+            //         text: 'http://test.kbsan.com:5000/backstop-data/html_report/',
+            //         channel: conversationId,
+            //     });
+            //
+            //     // The result contains an identifier for the message, `ts`.
+            //     console.log(`Successfully send message ${result.ts} in conversation ${conversationId}`);
+            // })();
 
             return res.redirect('/');
         });

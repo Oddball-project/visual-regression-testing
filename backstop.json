@@ -11,43 +11,7 @@
     {
       "label": "Homepage",
       "referenceUrl": "https://greyscalegorilla.com",
-      "url": "https://dev-greyscalegorilla.pantheonsite.io//",
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "selectors": [
-        "document"
-      ],
-      "delay": 500,
-      "misMatchThreshold": 0.1
-    },
-    {
-      "label": "BLOG",
-      "referenceUrl": "https://greyscalegorilla.com/blog",
-      "url": "https://dev-greyscalegorilla.pantheonsite.io/blog",
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "selectors": [
-        "document"
-      ],
-      "delay": 500,
-      "misMatchThreshold": 0.1
-    },
-    {
-      "label": "JOIN-PLUS",
-      "referenceUrl": "https://greyscalegorilla.com/join-plus",
-      "url": "https://dev-greyscalegorilla.pantheonsite.io/join-plus",
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "selectors": [
-        "document"
-      ],
-      "delay": 500,
-      "misMatchThreshold": 0.1
-    },
-    {
-      "label": "TUTORIALS",
-      "referenceUrl": "https://greyscalegorilla.com/tutorials",
-      "url": "https://dev-greyscalegorilla.pantheonsite.io/tutorials",
+      "url": "https://dev-greyscalegorilla.pantheonsite.io",
       "hideSelectors": [],
       "removeSelectors": [],
       "selectors": [
@@ -67,7 +31,7 @@
   "report": [
     "browser"
   ],
-  "engine": "puppeteer",
+  "engine": "playwright",
   "engineOptions": {
     "args": [
       "--no-sandbox"
