@@ -2,7 +2,9 @@ const express = require('express');
 const { exec } = require('child_process');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+var fs_Extra = require('fs-extra');
 const path = require('path');
+const html_report_path = require('path');
 const { WebClient } = require('@slack/web-api');
 require('dotenv').config();
 // // Initialize a single instance for the whole app
@@ -14,25 +16,52 @@ const token = process.env.TOKEN;
 // Initialize
 const web = new WebClient(token);
 
-const conversationId = 'C05E3UJQX2B';
+const path2='';
+
+const conversationId = 'C05E3UJQX2B'; // Slack channel Id
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve the BackstopJS report directory
-app.use('/backstop-data', express.static(path.join(__dirname, '/backstop_data')));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
 
 app.get('/test', (req, res) => {
     res.send("Just a test route");
 });
 
+
 app.post('/compare', (req, res) => {
-    const { referenceUrl, url } = req.body;
+    const { tempId,referenceUrl, url } = req.body;
     let { relativePaths } = req.body;
     let scenarios;
+
+    if (!fs.existsSync(`${tempId}`)){
+        fs.mkdirSync(`${tempId}`, { recursive: true });
+    }
+    if (!fs.existsSync(`${tempId}/bitmaps_reference`)){
+        fs.mkdirSync(`${tempId}/bitmaps_reference`, { recursive: true });
+    }
+    if (!fs.existsSync(`${tempId}/bitmaps_test`)){
+        fs.mkdirSync(`${tempId}/bitmaps_test`, { recursive: true });
+    }
+    if (!fs.existsSync(`${tempId}/html_report`)){
+        fs.mkdirSync(`${tempId}/html_report`, { recursive: true });
+    }
+
+
+    var sourceDir = html_report_path.join(__dirname, "html_report");
+    var destinationDir = html_report_path.join(__dirname, `${tempId}/html_report`);
+
+    fs_Extra.copy(sourceDir, destinationDir, function(error) {
+        if (error) {
+            throw error;
+        } else {
+          console.log("success!");
+        }
+    });
+
+    app.use(`/${tempId}`, express.static(path.join(__dirname, `/${tempId}`)));
+
+    //app.use('/backstop-data', express.static(path.join(__dirname, '/backstop_data')));
+  
+
     if (relativePaths !== '') {
         relativePaths = '/,' + relativePaths;
         scenarios = relativePaths.split(',').map((relativePath) => ({
@@ -61,7 +90,7 @@ app.post('/compare', (req, res) => {
     }
 
     const config = {
-        id: 'backstop_default',
+        id: `${tempId}`,
         viewports: [
             {
                 label: 'desktop',
@@ -71,11 +100,11 @@ app.post('/compare', (req, res) => {
         ],
         scenarios: scenarios,
         paths: {
-            bitmaps_reference: 'backstop_data/bitmaps_reference',
-            bitmaps_test: 'backstop_data/bitmaps_test',
-            engine_scripts: 'backstop_data/engine_scripts',
-            html_report: 'backstop_data/html_report',
-            ci_report: 'backstop_data/ci_report',
+            bitmaps_reference: `${tempId}/bitmaps_reference`,
+            bitmaps_test: `${tempId}/bitmaps_test`,
+            engine_scripts: 'engine_scripts',
+            html_report: `${tempId}/html_report`,
+            ci_report: `${tempId}/ci_report`,
         },
         report: ['browser'],
         engine: 'playwright',
@@ -88,27 +117,19 @@ app.post('/compare', (req, res) => {
         debugWindow: false,
     };
 
-    fs.writeFileSync(path.join(__dirname, 'backstop.json'), JSON.stringify(config, null, 2));
+    fs.writeFileSync(path.join(__dirname, `${tempId}.json`), JSON.stringify(config, null, 2));
 
-    exec(`backstop reference`, () => {
-        exec(`backstop test`, () => {
-
-            // (async () => {
-            //
-            //     // Post a message to the channel, and await the result.
-            //     // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
-            //     const result = await web.chat.postMessage({
-            //         text: 'http://test.kbsan.com:5000/backstop-data/html_report/',
-            //         channel: conversationId,
-            //     });
-            //
-            //     // The result contains an identifier for the message, `ts`.
-            //     console.log(`Successfully send message ${result.ts} in conversation ${conversationId}`);
-            // })();
-
+    exec(`backstop reference --configPath=${tempId}.json`, () => {
+        exec(`backstop test --configPath=${tempId}.json`, () => {
             return res.redirect('/');
         });
     });
+
 });
 
-app.listen(5000, () => console.log('Server running on http://test.kbsan.com:5000'));
+app.get('/', (req, res) => {
+   // console.log(path);
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+app.listen(3006, () => console.log('Server running on http://test.kbsan.com:3000'));

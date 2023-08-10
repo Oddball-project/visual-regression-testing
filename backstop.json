@@ -10,8 +10,8 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "referenceUrl": "https://greyscalegorilla.com",
-      "url": "https://dev-greyscalegorilla.pantheonsite.io",
+      "referenceUrl": "https://mesa.ucop.edu/",
+      "url": "http://my.rockford.edu/",
       "hideSelectors": [],
       "removeSelectors": [],
       "selectors": [
